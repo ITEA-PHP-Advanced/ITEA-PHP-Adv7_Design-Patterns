@@ -1,0 +1,20 @@
+#!/usr/bin/env php
+<?php
+
+use App\Config\AppConfig;
+use App\Config\CachedAppConfig;
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+const APP_CONFIG_FILE_PATH = __DIR__ . '/../config/app_config.yaml';
+
+$config = new AppConfig(APP_CONFIG_FILE_PATH);
+var_dump($config->getConfig());
+
+$cachedAppConfig = new CachedAppConfig(APP_CONFIG_FILE_PATH);
+var_dump($cachedAppConfig->getConfig());
+
+sleep(3);
+
+var_dump($config->getConfig());
+var_dump($cachedAppConfig->getConfig());

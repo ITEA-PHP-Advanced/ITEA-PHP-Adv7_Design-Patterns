@@ -1,0 +1,3 @@
+language: ua
+currencies: ['UAH', 'USD', 'EUR']
+enabled_cache: true
