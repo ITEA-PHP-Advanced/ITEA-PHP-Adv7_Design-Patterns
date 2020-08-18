@@ -1,0 +1,30 @@
+#!/usr/bin/env php
+<?php
+
+use App\User\User;
+use App\User\UserCollection;
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+$a = new User('a@example.com');
+
+$b = new User('b@example.com');
+$b->block();
+
+$c = new User('c@example.com');
+
+$users = new UserCollection($a, $b, $c);
+
+foreach ($users as $user) {
+    echo $user->getEmail() . \PHP_EOL;
+}
+
+$activeUsers = $users->filter(function (User $user) {
+    return $user->isActive();
+});
+
+echo 'Active users:' . \PHP_EOL;
+
+foreach ($activeUsers as $user) {
+    echo $user->getEmail() . \PHP_EOL;
+}
