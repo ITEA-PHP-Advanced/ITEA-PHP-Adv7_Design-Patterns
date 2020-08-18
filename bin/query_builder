@@ -6,10 +6,13 @@ use App\QueryBuilder;
 require_once __DIR__ . '/../vendor/autoload.php';
 
 $queryBuilder1 = new QueryBuilder();
-$queryBuilder1->select('id, status');
-$queryBuilder1->from('user');
-$queryBuilder1->where('deleted_at IS NULL');
-echo $queryBuilder1->getQuery() . \PHP_EOL;
+$query = $queryBuilder1
+    ->select('id, status')
+    ->from('user')
+    ->where('deleted_at IS NULL')
+    ->getQuery()
+;
+echo $query . \PHP_EOL;
 
 $queryBuilder2 = new QueryBuilder();
 $queryBuilder2->select('id');
