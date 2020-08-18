@@ -1,0 +1,24 @@
+#!/usr/bin/env php
+<?php
+
+use App\Security\AuthenticationInterface;
+use App\Security\AuthProtocolV1Factory;
+use App\Security\AuthProtocolV2Factory;
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+function authUser(AuthenticationInterface $authentication)
+{
+    echo $authentication->authenticate() . \PHP_EOL;
+}
+
+switch ($request->headers->get('Authentication')) {
+    case 'Auth-V1':
+        $authProtocol = (new AuthProtocolV1Factory())->create();
+        break;
+    case 'Auth_Protocol_V2':
+        $authProtocol = (new AuthProtocolV2Factory())->create();
+        break;
+}
+
+authUser($authProtocol);
