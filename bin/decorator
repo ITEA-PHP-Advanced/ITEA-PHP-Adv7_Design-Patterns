@@ -1,0 +1,14 @@
+#!/usr/bin/env php
+<?php
+
+use App\Client\HttpClient;
+use App\Client\LoggingHttpClient;
+use App\Client\TracingHttpClient;
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+$httpClient = new HttpClient();
+$httpClient = new LoggingHttpClient($httpClient);
+$httpClient = new TracingHttpClient($httpClient);
+
+$httpClient->request('GET', 'https://google.com/');
