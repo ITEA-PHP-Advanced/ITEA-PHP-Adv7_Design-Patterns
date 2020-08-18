@@ -4,11 +4,17 @@
 use App\Client\HttpClient;
 use App\Client\LoggingHttpClient;
 use App\Client\TracingHttpClient;
+use App\Logger\NullLogger;
+use App\Logger\StdLogger;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
 $httpClient = new HttpClient();
-$httpClient = new LoggingHttpClient($httpClient);
+
+$logger = new StdLogger();
+//$logger = new NullLogger();
+$httpClient = new LoggingHttpClient($httpClient, $logger);
+
 $httpClient = new TracingHttpClient($httpClient);
 
 $httpClient->request('GET', 'https://google.com/');
