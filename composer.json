@@ -2,7 +2,7 @@
   "required": {
     "php": ">=7.4"
   },
-  "autoloader": {
+  "autoload": {
     "psr-4": {
       "App\\": "src/"
     }

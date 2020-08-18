@@ -1,4 +1,22 @@
 #!/usr/bin/env php
 <?php
 
+use App\Connection;
+
 require_once __DIR__ . '/../vendor/autoload.php';
+
+$ob1 = Connection::getInstance();
+$ob1->printObjectId();
+
+Connection::getInstance()->printObjectId();
+Connection::getInstance()->printObjectId();
+
+//$ob2 = new Connection();
+//$ob2->printObjectId();
+
+//$ob3 = clone $ob1;
+//$ob3->printObjectId();
+
+$serialized = \serialize($ob1);
+$ob4 = \unserialize($serialized);
+$ob4->printObjectId();
