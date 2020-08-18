@@ -1,0 +1,10 @@
+{
+  "required": {
+    "php": ">=7.4"
+  },
+  "autoloader": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  }
+}
